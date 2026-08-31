@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AgriRide</string>
+    <string name="app_tagline">Smart Farming. Easy Booking.</string>
+    <string name="main_title">Farm Equipment Booking &amp; Scheduling System</string>
+    
+    <!-- Auth & Onboarding -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login">Login</string>
+    <string name="register">Create Account</string>
+    <string name="verify_otp">Verify Account</string>
+    <string name="mobile_number">Mobile Number / Email</string>
+    <string name="password">Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="location">Location</string>
+    <string name="role_farmer">Farmer</string>
+    <string name="role_owner">Equipment Owner</string>
+    <string name="role_worker">Worker</string>
+    <string name="logout">Logout</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="continue_text">Continue</string>
+    <string name="switch_role">Switch Role</string>
+    
+    <!-- Navigation Tabs -->
+    <string name="nav_home">Home</string>
+    <string name="nav_bookings">Bookings</string>
+    <string name="nav_community">Community</string>
+    <string name="nav_store">Store</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Farmer Portal -->
+    <string name="farmer_portal_title">Farmer Portal</string>
+    <string name="farmer_welcome">🌾 Welcome back, Farmer</string>
+    <string name="select_farm_location">📍 Select your farm location</string>
+    <string name="quick_book">Book Equipment</string>
+    <string name="quick_book_sub">Tractors, Harvesters, Sprayers &amp; Drones</string>
+    <string name="my_bookings_title">My Bookings</string>
+    <string name="my_bookings_sub">Track status &amp; view scheduled trips</string>
+    <string name="soil_recommendation">Soil &amp; Crop Recommendation</string>
+    <string name="soil_recommendation_sub">Smart AI soil testing &amp; crop guide</string>
+    <string name="crop_damage_map">Crop Damage Map</string>
+    <string name="crop_damage_map_sub">Live satellite map &amp; rain radar</string>
+    <string name="weather_radar">Weather Radar</string>
+    <string name="disaster_alerts">Weather &amp; Disaster Alerts</string>
+    <string name="search_hint">Search tractors, harvesters, sprayers...</string>
+    <string name="heavy_tractor">Heavy Tractor</string>
+    <string name="paddy_harvester">Paddy Harvester</string>
+    <string name="drone_sprayer">Kisan Drone Sprayer</string>
+    <string name="rotavator">Rotavator &amp; Plough</string>
+    <string name="recent_equipment">Popular Farming Machinery</string>
+    <string name="view_all">View All</string>
+    <string name="book_now">Book Equipment</string>
+    <string name="per_hour">/ hour</string>
+    <string name="per_acre">/ acre</string>
+    <string name="available_nearby">Available Nearby</string>
+    <string name="confirm_booking">Confirm Booking</string>
+    <string name="booking_details">Booking Details</string>
+    <string name="cash_on_delivery">Cash on Delivery (Pay at Farm)</string>
+    <string name="pay_online_upi">Pay Online via UPI</string>
+
+    <!-- Owner Portal -->
+    <string name="owner_portal_title">Equipment Owner Portal</string>
+    <string name="total_monthly_revenue">Total Monthly Fleet Revenue</string>
+    <string name="net_owner_profit">Net Owner Profit</string>
+    <string name="driver_wages">Driver Wages</string>
+    <string name="pending_amount">Pending</string>
+    <string name="today_amount">Today</string>
+    <string name="weekly_earnings_trends">Weekly Fleet Earnings &amp; Operation Trends</string>
+    <string name="fleet_drivers_roster">Fleet Drivers Roster</string>
+    <string name="add_driver">+ Add Driver</string>
+    <string name="pay_wage">Pay Wage</string>
+    <string name="duty">Duty</string>
+    <string name="call">Call</string>
+    <string name="edit">Edit</string>
+    <string name="available">Available</string>
+    <string name="on_leave">On Leave</string>
+    <string name="register_equipment">Register New Equipment</string>
+    <string name="manage_fleet">Manage My Equipment Fleet</string>
+    <string name="incoming_requests">Incoming Booking Requests</string>
+    <string name="manage_drivers">Manage Fleet Drivers &amp; Operators</string>
+    <string name="owner_earnings">Owner Earnings &amp; Workers</string>
+    <string name="disburse_wage_title">Disburse Driver Wage</string>
+    <string name="disburse_wage_msg">Pay field operation wage to driver</string>
+
+    <!-- Worker Portal -->
+    <string name="worker_portal_title">AgriRide Driver &amp; Operator</string>
+    <string name="worker_earnings_attendance">Worker Earnings &amp; Attendance</string>
+    <string name="total_month_earnings">Total Month Earnings</string>
+    <string name="base_shift_wage">Base Shift Wage: ₹600/day • Acre Bonus: ₹150/acre</string>
+    <string name="today_wage">Today\'s Wage</string>
+    <string name="completed_works">Completed</string>
+    <string name="pending_payout">Pending Payout</string>
+    <string name="shift_attendance">Daily Shift Attendance</string>
+    <string name="on_duty">On Duty</string>
+    <string name="off_duty">Off Duty</string>
+    <string name="check_out_shift">Toggle / Check Out of Shift</string>
+    <string name="check_in_shift">Check In for Field Shift</string>
+    <string name="days_worked">Days Worked</string>
+    <string name="absent">Absent</string>
+    <string name="punctuality">Punctuality</string>
+    <string name="completed_field_tasks">Completed Field Tasks &amp; Wages Earned</string>
+    <string name="request_advance">Request Advance</string>
+    <string name="call_owner">Call Owner</string>
+    <string name="take_vehicle_depart">Take Vehicle &amp; Depart for Field</string>
+    <string name="mark_completed">Mark Operation Completed</string>
+    <string name="active_machinery_operation">Active Machinery Operation</string>
+    <string name="next_scheduled_operation">Next Scheduled Operation</string>
+
+    <!-- Language Selection -->
+    <string name="select_language_title">Select Your Preferred Language</string>
+    <string name="select_language_sub">Choose language for AgriRide experience</string>
+    <string name="lang_english">English</string>
+    <string name="lang_telugu">తెలుగు (Telugu)</string>
+    <string name="lang_tamil">தமிழ் (Tamil)</string>
+    <string name="lang_hindi">हिन्दी (Hindi)</string>
+
+    <!-- Quick Action Strings -->
+    <string name="quick_action_book">Book</string>
+    <string name="quick_action_my_bookings">My Bookings</string>
+    <string name="quick_action_soil_ai">Soil AI</string>
+    <string name="quick_action_live_map">Live Map</string>
+    <string name="quick_action_quick_services">Quick Services</string>
+    <string name="quick_action_top_nearby">Top Nearby Equipment</string>
+</resources>

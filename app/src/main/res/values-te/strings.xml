@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">అగ్రిరైడ్</string>
+    <string name="app_tagline">స్మార్ట్ వ్యవసాయం. సులభమైన బుకింగ్.</string>
+    <string name="main_title">వ్యవసాయ యంత్రాల బుకింగ్ &amp; నిర్వహణ వ్యవస్థ</string>
+    
+    <!-- Auth & Onboarding -->
+    <string name="welcome_back">తిరిగి స్వాగతం</string>
+    <string name="login">లాగిన్ అవ్వండి</string>
+    <string name="register">కొత్త ఖాతా సృష్టించండి</string>
+    <string name="verify_otp">ఖాతాను ధృవీకరించండి</string>
+    <string name="mobile_number">మొబైల్ నంబర్ / ఇమెయిల్</string>
+    <string name="password">పాస్‌వర్డ్</string>
+    <string name="full_name">పూర్తి పేరు</string>
+    <string name="location">ప్రాంతం / చిరునామా</string>
+    <string name="role_farmer">రైతు</string>
+    <string name="role_owner">యంత్ర యజమాని</string>
+    <string name="role_worker">డ్రైవర్ / వర్కర్</string>
+    <string name="logout">లాగౌట్</string>
+    <string name="cancel">రద్దు చేయండి</string>
+    <string name="save">భద్రపరచండి</string>
+    <string name="continue_text">కొనసాగించండి</string>
+    <string name="switch_role">పాత్ర మార్చండి</string>
+    
+    <!-- Navigation Tabs -->
+    <string name="nav_home">హోమ్</string>
+    <string name="nav_bookings">బుకింగ్‌లు</string>
+    <string name="nav_community">కమ్యూనిటీ</string>
+    <string name="nav_store">దుకాణం</string>
+    <string name="nav_profile">ప్రొఫైల్</string>
+
+    <!-- Farmer Portal -->
+    <string name="farmer_portal_title">రైతు విభాగం</string>
+    <string name="farmer_welcome">🌾 స్వాగతం, రైతు సోదరా</string>
+    <string name="select_farm_location">📍 మీ పొలం ప్రాంతాన్ని ఎంచుకోండి</string>
+    <string name="quick_book">యంత్రాలు బుక్ చేయండి</string>
+    <string name="quick_book_sub">ట్రాక్టర్లు, హార్వెస్టర్లు, స్ప్రేయర్లు &amp; డ్రోన్లు</string>
+    <string name="my_bookings_title">నా బుకింగ్‌లు</string>
+    <string name="my_bookings_sub">బుకింగ్ వివరాలు &amp; స్థితిని చూడండి</string>
+    <string name="soil_recommendation">నేల &amp; పంట సిఫార్సు</string>
+    <string name="soil_recommendation_sub">స్మార్ట్ నేల పరీక్ష &amp; పంటల సమాచారం</string>
+    <string name="crop_damage_map">పంట నష్టం మ్యాప్</string>
+    <string name="crop_damage_map_sub">లైవ్ శాటిలైట్ మ్యాప్ &amp; వర్షపాత రాడార్</string>
+    <string name="weather_radar">వాతావరణ రాడార్</string>
+    <string name="disaster_alerts">వాతావరణ &amp; విపత్తు హెచ్చరికలు</string>
+    <string name="search_hint">ట్రాక్టర్లు, హార్వెస్టర్లు, స్ప్రేయర్లు వెతకండి...</string>
+    <string name="heavy_tractor">భారీ ట్రాక్టర్</string>
+    <string name="paddy_harvester">వరి కోత యంత్రం</string>
+    <string name="drone_sprayer">కిసాన్ డ్రోన్ స్ప్రేయర్</string>
+    <string name="rotavator">రోటవేటర్ &amp; నాగలి</string>
+    <string name="recent_equipment">ప్రముఖ వ్యవసాయ యంత్రాలు</string>
+    <string name="view_all">అన్నీ చూడండి</string>
+    <string name="book_now">ఇప్పుడే బుక్ చేయండి</string>
+    <string name="per_hour">/ గంటకు</string>
+    <string name="per_acre">/ ఎకరానికి</string>
+    <string name="available_nearby">సమీపంలో అందుబాటులో ఉంది</string>
+    <string name="confirm_booking">బుకింగ్ నిర్ధారించండి</string>
+    <string name="booking_details">బుకింగ్ వివరాలు</string>
+    <string name="cash_on_delivery">పొలం వద్ద నగదు చెల్లింపు (నగదు)</string>
+    <string name="pay_online_upi">ఆన్‌లైన్ యూపీఐ చెల్లింపు</string>
+
+    <!-- Owner Portal -->
+    <string name="owner_portal_title">యంత్ర యజమాని విభాగం</string>
+    <string name="total_monthly_revenue">మొత్తం నెలవారీ ఆదాయం</string>
+    <string name="net_owner_profit">యజమాని నికర లాభం</string>
+    <string name="driver_wages">డ్రైవర్ల వేతనాలు</string>
+    <string name="pending_amount">బాకీ మొత్తం</string>
+    <string name="today_amount">ఈరోజు</string>
+    <string name="weekly_earnings_trends">వారపు ఆదాయం &amp; పనితీరు పోకడలు</string>
+    <string name="fleet_drivers_roster">యంత్ర డ్రైవర్ల జాబితా</string>
+    <string name="add_driver">+ డ్రైవర్‌ను చేర్చండి</string>
+    <string name="pay_wage">వేతనం చెల్లించండి</string>
+    <string name="duty">డ్యూటీ</string>
+    <string name="call">కాల్</string>
+    <string name="edit">సవరించండి</string>
+    <string name="available">అందుబాటులో ఉంది</string>
+    <string name="on_leave">సెలవులో ఉంది</string>
+    <string name="register_equipment">కొత్త యంత్రాన్ని నమోదు చేయండి</string>
+    <string name="manage_fleet">నా యంత్రాల జాబితా</string>
+    <string name="incoming_requests">వచ్చిన బుకింగ్ అభ్యర్థనలు</string>
+    <string name="manage_drivers">యంత్ర డ్రైవర్ల నిర్వహణ</string>
+    <string name="owner_earnings">ఆదాయం &amp; డ్రైవర్లు</string>
+    <string name="disburse_wage_title">డ్రైవర్‌కు వేతనం చెల్లించండి</string>
+    <string name="disburse_wage_msg">డ్రైవర్‌కు పొలం పని వేతనం చెల్లించండి</string>
+
+    <!-- Worker Portal -->
+    <string name="worker_portal_title">అగ్రిరైడ్ డ్రైవర్ &amp; ఆపరేటర్</string>
+    <string name="worker_earnings_attendance">డ్రైవర్ సంపాదన &amp; హాజరు</string>
+    <string name="total_month_earnings">ఈ నెల మొత్తం సంపాదన</string>
+    <string name="base_shift_wage">రోజువారీ ప్రాథమిక వేతనం: ₹600 • ఎకరా బోనస్: ₹150</string>
+    <string name="today_wage">ఈరోజు వేతనం</string>
+    <string name="completed_works">పూర్తయినవి</string>
+    <string name="pending_payout">రావాల్సిన వేతనం</string>
+    <string name="shift_attendance">రోజువారీ షిఫ్ట్ హాజరు</string>
+    <string name="on_duty">డ్యూటీలో ఉన్నారు</string>
+    <string name="off_duty">సెలవులో ఉన్నారు</string>
+    <string name="check_out_shift">షిఫ్ట్ ముగించండి</string>
+    <string name="check_in_shift">షిఫ్ట్ ప్రారంభించండి</string>
+    <string name="days_worked">పనిచేసిన రోజులు</string>
+    <string name="absent">సెలవులు</string>
+    <string name="punctuality">ఖచ్చితమైన సమయం</string>
+    <string name="completed_field_tasks">పూర్తయిన పొలం పనులు &amp; సంపాదించిన వేతనం</string>
+    <string name="request_advance">అడ్వాన్స్ కోరండి</string>
+    <string name="call_owner">యజమానికి కాల్ చేయండి</string>
+    <string name="take_vehicle_depart">వాహనం తీసుకొని బయలుదేరండి</string>
+    <string name="mark_completed">పని పూర్తయినట్లు నమోదు చేయండి</string>
+    <string name="active_machinery_operation">ప్రస్తుతం జరుగుతున్న పని</string>
+    <string name="next_scheduled_operation">తరువాతి షెడ్యూల్ చేసిన పని</string>
+
+    <!-- Language Selection -->
+    <string name="select_language_title">మీకు కావలసిన భాషను ఎంచుకోండి</string>
+    <string name="select_language_sub">అగ్రిరైడ్ అనుభవం కోసం భాషను ఎంచుకోండి</string>
+    <string name="lang_english">English</string>
+    <string name="lang_telugu">తెలుగు (Telugu)</string>
+    <string name="lang_tamil">தமிழ் (Tamil)</string>
+    <string name="lang_hindi">हिन्दी (Hindi)</string>
+
+    <!-- Quick Action Strings -->
+    <string name="quick_action_book">బుకింగ్</string>
+    <string name="quick_action_my_bookings">నా బుకింగ్‌లు</string>
+    <string name="quick_action_soil_ai">నేల పరీక్ష AI</string>
+    <string name="quick_action_live_map">లైవ్ మ్యాప్</string>
+    <string name="quick_action_quick_services">త్వరిత సేవలు</string>
+    <string name="quick_action_top_nearby">సమీప యంత్రాలు</string>
+</resources>

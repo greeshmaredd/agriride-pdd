@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriRide – Farm Equipment Booking & Scheduling System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Remix Icons for crisp mobile icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- TOP DECK CONTROL BAR -->
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="brand-logo-icon">
+        <i class="ri-node-tree-line"></i>
+      </div>
+      <div>
+        <h1 class="brand-title">AgriRide <span>2026</span></h1>
+        <p class="brand-subtitle">Smart Farming. Easy Booking. • Android Mobile UI Showcase (31 Screens & WhatsApp Hub)</p>
+      </div>
+    </div>
+
+    <!-- VIEW MODE CONTROLS -->
+    <div class="view-controls">
+      <button class="view-btn active" id="btn-view-device" onclick="switchViewMode('device')">
+        <i class="ri-smartphone-line"></i> Phone Simulator
+      </button>
+      <button class="view-btn" id="btn-view-grid" onclick="switchViewMode('grid')">
+        <i class="ri-grid-fill"></i> 31 Screens Grid
+      </button>
+      <div class="role-selector-wrapper">
+        <label for="role-select"><i class="ri-user-shared-line"></i> Active Role:</label>
+        <select id="role-select" onchange="changeRole(this.value)">
+          <option value="farmer">🌾 Farmer Flow</option>
+          <option value="owner">🚜 Owner Module</option>
+          <option value="worker">👷 Worker Module</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <div class="main-layout">
+    
+    <!-- LEFT SIDEBAR: SCREEN NAVIGATION DIRECTORY -->
+    <aside class="screen-sidebar">
+      <div class="sidebar-header">
+        <h3><i class="ri-menu-search-line"></i> Screen Index</h3>
+        <span class="screen-counter-badge" id="screen-count-badge">Screen 1 of 31</span>
+      </div>
+
+      <div class="sidebar-scroll">
+        <!-- AUTH & ONBOARDING -->
+        <div class="nav-section">
+          <div class="section-title"><i class="ri-login-box-line"></i> Auth & Onboarding</div>
+          <button class="screen-nav-item active" onclick="navigateToScreen(1)">
+            <span class="num">01</span>
+            <span class="label">Splash Screen</span>
+            <span class="tag">Auth</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(2)">
+            <span class="num">02</span>
+            <span class="label">Onboarding (3 Slides)</span>
+            <span class="tag">Intro</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(3)">
+            <span class="num">03</span>
+            <span class="label">Language Selection</span>
+            <span class="tag">Setup</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(4)">
+            <span class="num">04</span>
+            <span class="label">Login Screen</span>
+            <span class="tag">Auth</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(5)">
+            <span class="num">05</span>
+            <span class="label">Register Screen</span>
+            <span class="tag">Auth</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(6)">
+            <span class="num">06</span>
+            <span class="label">OTP Verification</span>
+            <span class="tag">Auth</span>
+          </button>
+        </div>
+
+        <!-- FARMER CORE & BOOKING -->
+        <div class="nav-section">
+          <div class="section-title"><i class="ri-user-3-line"></i> Farmer Booking Flow</div>
+          <button class="screen-nav-item" onclick="navigateToScreen(7)">
+            <span class="num">07</span>
+            <span class="label">Farmer Home Dashboard</span>
+            <span class="tag farmer">Home</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(8)">
+            <span class="num">08</span>
+            <span class="label">Equipment Categories</span>
+            <span class="tag farmer">Cat</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(9)">
+            <span class="num">09</span>
+            <span class="label">Equipment Search & Filter</span>
+            <span class="tag farmer">Search</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(10)">
+            <span class="num">10</span>
+            <span class="label">Equipment Details</span>
+            <span class="tag farmer">Detail</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(11)">
+            <span class="num">11</span>
+            <span class="label">Select Farm Activity</span>
+            <span class="tag farmer">Flow</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(12)">
+            <span class="num">12</span>
+            <span class="label">Booking Details Form</span>
+            <span class="tag farmer">Form</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(13)">
+            <span class="num">13</span>
+            <span class="label">Smart Scheduling (Weather)</span>
+            <span class="tag feature">AI/Weather</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(14)">
+            <span class="num">14</span>
+            <span class="label">Booking Summary</span>
+            <span class="tag farmer">Review</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(15)">
+            <span class="num">15</span>
+            <span class="label">Payment Options</span>
+            <span class="tag farmer">Pay</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(16)">
+            <span class="num">16</span>
+            <span class="label">Booking Success</span>
+            <span class="tag farmer">Done</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(17)">
+            <span class="num">17</span>
+            <span class="label">My Bookings</span>
+            <span class="tag farmer">Orders</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(18)">
+            <span class="num">18</span>
+            <span class="label">Live Vehicle Tracking</span>
+            <span class="tag feature">GPS Map</span>
+          </button>
+        </div>
+
+        <!-- WEATHER, SOIL & COMMUNITY -->
+        <div class="nav-section">
+          <div class="section-title"><i class="ri-sun-cloudy-line"></i> Smart Agri Services</div>
+          <button class="screen-nav-item" onclick="navigateToScreen(19)">
+            <span class="num">19</span>
+            <span class="label">Weather Dashboard</span>
+            <span class="tag">Weather</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(20)">
+            <span class="num">20</span>
+            <span class="label">Weather & Disaster Alerts</span>
+            <span class="tag alert">Alerts</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(21)">
+            <span class="num">21</span>
+            <span class="label">Soil & Crop Recommendation</span>
+            <span class="tag feature">Agri AI</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(22)">
+            <span class="num">22</span>
+            <span class="label">Farmer Community Feed</span>
+            <span class="tag">Social</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(23)">
+            <span class="num">23</span>
+            <span class="label">Agricultural Store</span>
+            <span class="tag">Store</span>
+          </button>
+        </div>
+
+        <!-- OWNER MODULE -->
+        <div class="nav-section">
+          <div class="section-title"><i class="ri-truck-line"></i> Equipment Owner Module</div>
+          <button class="screen-nav-item" onclick="navigateToScreen(24)">
+            <span class="num">24</span>
+            <span class="label">Owner Dashboard</span>
+            <span class="tag owner">Owner</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(25)">
+            <span class="num">25</span>
+            <span class="label">Add Equipment Form</span>
+            <span class="tag owner">Owner</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(26)">
+            <span class="num">26</span>
+            <span class="label">Vehicle Document Verification</span>
+            <span class="tag owner">KYC</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(27)">
+            <span class="num">27</span>
+            <span class="label">Owner Booking Requests</span>
+            <span class="tag owner">Manage</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(28)">
+            <span class="num">28</span>
+            <span class="label">Owner Earnings & Workers</span>
+            <span class="tag owner">Stats</span>
+          </button>
+        </div>
+
+        <!-- WORKER MODULE -->
+        <div class="nav-section">
+          <div class="section-title"><i class="ri-hard-hat-line"></i> Worker Module</div>
+          <button class="screen-nav-item" onclick="navigateToScreen(29)">
+            <span class="num">29</span>
+            <span class="label">Worker Dashboard</span>
+            <span class="tag worker">Worker</span>
+          </button>
+          <button class="screen-nav-item" onclick="navigateToScreen(30)">
+            <span class="num">30</span>
+            <span class="label">Worker Tasks & Attendance</span>
+            <span class="tag worker">Shift</span>
+          </button>
+        </div>
+
+        <!-- WHATSAPP & COMMUNICATION HUB -->
+        <div class="nav-section">
+          <div class="section-title"><i class="ri-whatsapp-line"></i> Communication Hub</div>
+          <button class="screen-nav-item" onclick="navigateToScreen(31)">
+            <span class="num">31</span>
+            <span class="label">AgriRide WhatsApp Chat</span>
+            <span class="tag feature" style="background: #25D366; color: #fff;">WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT DISPLAY AREA -->
+    <main class="content-viewport" id="content-viewport">
+      
+      <!-- DEVICE SIMULATOR VIEW (DEFAULT) -->
+      <div id="device-view-container" class="device-view-container">
+        
+        <!-- PROTOTYPE STEPPER / FLOW TOOLBAR -->
+        <div class="phone-stepper-bar">
+          <div class="stepper-left">
+            <button class="step-btn" onclick="prevScreen()"><i class="ri-arrow-left-s-line"></i> Prev</button>
+            <span class="step-info" id="step-info-text">Screen 1 / 31: Splash Screen</span>
+            <button class="step-btn" onclick="nextScreen()">Next <i class="ri-arrow-right-s-line"></i></button>
+          </div>
+
+          <div class="stepper-right">
+            <button class="flow-shortcut-btn" onclick="startFlow('farmer')"><i class="ri-play-circle-line"></i> Demo Farmer Flow</button>
+            <button class="flow-shortcut-btn" onclick="startFlow('owner')"><i class="ri-truck-line"></i> Demo Owner Flow</button>
+            <button class="flow-shortcut-btn" onclick="navigateToScreen(31)" style="background: #128C7E; color: #fff; border-color: #25D366;"><i class="ri-whatsapp-line"></i> WhatsApp Chat</button>
+          </div>
+        </div>
+
+        <!-- REALISTIC ANDROID SMARTPHONE FRAME -->
+        <div class="phone-device-wrapper">
+          <div class="android-phone-frame">
+            <!-- Speaker & Camera Notch -->
+            <div class="phone-top-notch">
+              <div class="speaker"></div>
+              <div class="punch-hole-camera"></div>
+            </div>
+
+            <!-- ANDROID STATUS BAR -->
+            <div class="android-status-bar">
+              <span class="status-time" id="status-clock">09:41</span>
+              <div class="status-icons">
+                <i class="ri-signal-tower-fill"></i>
+                <i class="ri-wifi-fill"></i>
+                <span class="battery-percent">98%</span>
+                <i class="ri-battery-fill"></i>
+              </div>
+            </div>
+
+            <!-- SCREEN CONTAINER (DYNAMIC SCREEN RENDER) -->
+            <div class="phone-screen-body" id="phone-screen-body">
+              <!-- Content rendered dynamically via app.js -->
+            </div>
+
+            <!-- ANDROID GESTURE NAV BAR -->
+            <div class="android-gesture-bar">
+              <div class="gesture-handle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRID GALLERY VIEW (ALL 30 SCREENS IN A GRID MATRIX) -->
+      <div id="grid-view-container" class="grid-view-container hidden">
+        <div class="grid-header">
+          <h2><i class="ri-grid-fill"></i> All 30 Android Mobile Screens Overview</h2>
+          <p>Click on any screen card to open it directly in the interactive smartphone simulator view.</p>
+        </div>
+        <div class="screens-grid-matrix" id="screens-grid-matrix">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- TOAST NOTIFICATIONS & MODALS -->
+  <div id="toast-notification" class="toast-notification hidden">
+    <i class="ri-checkbox-circle-fill"></i> <span id="toast-message">Action successful</span>
+  </div>
+
+  <!-- APP SCRIPT -->
+  <script src="app.js"></script>
+</body>
+</html>

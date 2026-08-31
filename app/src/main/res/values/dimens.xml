@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Corner Radii -->
+    <dimen name="radius_small">10dp</dimen>
+    <dimen name="radius_medium">16dp</dimen>
+    <dimen name="radius_large">20dp</dimen>
+    <dimen name="radius_pill">999dp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_normal">12dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
+    <dimen name="spacing_extra_large">24dp</dimen>
+
+    <!-- UI Elements -->
+    <dimen name="button_height">54dp</dimen>
+    <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="bottom_nav_height">64dp</dimen>
+</resources>

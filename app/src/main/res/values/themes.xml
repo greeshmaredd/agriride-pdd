@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AgriRide" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary Brand Colors -->
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorOnPrimary">@color/surface_white</item>
+        <item name="colorPrimaryContainer">@color/secondary_green_soft</item>
+        <item name="colorOnPrimaryContainer">@color/primary_green_dark</item>
+
+        <!-- Secondary & Accent -->
+        <item name="colorSecondary">@color/secondary_green</item>
+        <item name="colorOnSecondary">@color/surface_white</item>
+        <item name="colorTertiary">@color/accent_yellow</item>
+
+        <!-- Background -->
+        <item name="android:colorBackground">@color/bg_app</item>
+        <item name="colorSurface">@color/surface_white</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/primary_green_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.AgriRide.Splash" parent="Theme.AgriRide">
+        <item name="android:statusBarColor">@color/primary_green_dark</item>
+    </style>
+</resources>

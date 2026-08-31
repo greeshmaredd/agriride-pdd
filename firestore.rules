@@ -1,0 +1,109 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && getUserData().role == 'ADMIN';
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Farmers Collection
+    match /farmers/{farmerId} {
+      allow read, write: if isAuthenticated();
+    }
+    
+    // Owners Collection
+    match /owners/{ownerId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Workers Collection
+    match /workers/{workerId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Equipment Collection
+    match /equipment/{equipmentId} {
+      allow read: if true;
+      allow create, update: if isAuthenticated();
+      allow delete: if isAdmin();
+    }
+
+    // Equipment Documents Collection
+    match /equipmentDocuments/{docId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Bookings Collection
+    match /bookings/{bookingId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+      allow delete: if isAdmin();
+    }
+
+    // Worker Attendance Collection
+    match /attendance/{attendanceId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Payments Collection
+    match /payments/{paymentId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Community Posts Collection
+    match /communityPosts/{postId} {
+      allow read: if true;
+      allow create, update, delete: if isAuthenticated();
+      
+      match /comments/{commentId} {
+        allow read: if true;
+        allow create, update, delete: if isAuthenticated();
+      }
+    }
+
+    // Products Collection
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Store Orders Collection
+    match /orders/{orderId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Notifications Collection
+    match /notifications/{notificationId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Vehicle Locations Collection
+    match /vehicleLocations/{equipmentId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+  }
+}

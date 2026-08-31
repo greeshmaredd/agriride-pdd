@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvProfileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Profile &amp; Settings"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProfileUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/surface_white"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="20dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardProfileImageContainer"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="32dp"
+                    app:strokeColor="@color/border_light"
+                    app:strokeWidth="1dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:id="@+id/ivProfilePic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_tractor"
+                        android:contentDescription="Profile Picture" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView android:id="@+id/tvProfileName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AgriRide User 👋" android:textColor="@color/text_primary" android:textSize="18sp" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvProfileDetails" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+91 98480 22338 • Location Not Set" android:textColor="@color/text_secondary" android:textSize="13sp" android:layout_marginTop="2dp"/>
+                    <TextView android:id="@+id/tvProfileRole" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Role: Farmer" android:textColor="@color/primary_green" android:textSize="12sp" android:textStyle="bold" android:layout_marginTop="6dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditProfileDetails"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/primary_green"
+            android:text="✏️ Edit Profile Details"
+            android:textColor="@color/surface_white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardProfileUser" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSwitchRoleProf"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FF9800"
+            android:text="🔄 Switch Role / Mode (Farmer / Owner / Worker)"
+            android:textColor="@color/surface_white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfileDetails" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSetFarmLocationProf"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="📍 Set / Update Farm Location"
+            android:textColor="@color/primary_green"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/primary_green"
+            app:layout_constraintTop_toBottomOf="@+id/btnSwitchRoleProf" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChangeLangProf"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="🌐 Change Language / భాష"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnSetFarmLocationProf" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHelpSupport"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="❓ Help &amp; Farmer Support"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnChangeLangProf" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNotificationsProf"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="🔔 Notifications &amp; Alerts"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnHelpSupport" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FFEBEE"
+            android:text="🚪 Logout Account"
+            android:textColor="#D32F2F"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="14dp"
+            app:strokeColor="#FFCDD2"
+            app:strokeWidth="1dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnNotificationsProf" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
