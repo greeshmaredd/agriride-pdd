@@ -57,70 +57,70 @@
         </activity>
 
         <!-- 2. OnboardingActivity -->
-        <activity android:name=".activities.OnboardingActivity" android:exported="false" />
-        <activity android:name=".activities.CropDamMapActivity" android:exported="false" />
+        <activity android:name=".activities.OnboardingActivity" android:exported="true" />
+        <activity android:name=".activities.CropDamMapActivity" android:exported="true" />
 
         <!-- 3. LanguageSelectionActivity -->
-        <activity android:name=".activities.LanguageSelectionActivity" android:exported="false" />
+        <activity android:name=".activities.LanguageSelectionActivity" android:exported="true" />
 
         <!-- 4. LoginActivity -->
-        <activity android:name=".activities.LoginActivity" android:exported="false" />
+        <activity android:name=".activities.LoginActivity" android:exported="true" />
 
         <!-- 5. RegisterActivity -->
-        <activity android:name=".activities.RegisterActivity" android:exported="false" />
+        <activity android:name=".activities.RegisterActivity" android:exported="true" />
 
         <!-- 6. OtpVerificationActivity -->
-        <activity android:name=".activities.OtpVerificationActivity" android:exported="false" />
+        <activity android:name=".activities.OtpVerificationActivity" android:exported="true" />
 
         <!-- 7. FarmerMainActivity (Contains FarmerHomeFragment, EquipmentCategoriesFragment, EquipmentSearchFragment, MyBookingsFragment, FarmerCommunityFragment, AgriculturalStoreFragment) -->
-        <activity android:name=".activities.FarmerMainActivity" android:exported="false" />
+        <activity android:name=".activities.FarmerMainActivity" android:exported="true" />
 
         <!-- 8. EquipmentCategoriesActivity -->
-        <activity android:name=".activities.EquipmentCategoriesActivity" android:exported="false" />
+        <activity android:name=".activities.EquipmentCategoriesActivity" android:exported="true" />
 
         <!-- 9. EquipmentSearchActivity -->
-        <activity android:name=".activities.EquipmentSearchActivity" android:exported="false" />
+        <activity android:name=".activities.EquipmentSearchActivity" android:exported="true" />
 
         <!-- 10. EquipmentDetailsActivity -->
-        <activity android:name=".activities.EquipmentDetailsActivity" android:exported="false" />
+        <activity android:name=".activities.EquipmentDetailsActivity" android:exported="true" />
 
         <!-- 11. FarmingActivityActivity -->
-        <activity android:name=".activities.FarmingActivityActivity" android:exported="false" />
+        <activity android:name=".activities.FarmingActivityActivity" android:exported="true" />
 
         <!-- 12. BookingDetailsActivity -->
-        <activity android:name=".activities.BookingDetailsActivity" android:exported="false" />
+        <activity android:name=".activities.BookingDetailsActivity" android:exported="true" />
 
         <!-- 13. SmartSchedulingActivity -->
-        <activity android:name=".activities.SmartSchedulingActivity" android:exported="false" />
+        <activity android:name=".activities.SmartSchedulingActivity" android:exported="true" />
 
         <!-- 14. BookingSummaryActivity -->
-        <activity android:name=".activities.BookingSummaryActivity" android:exported="false" />
+        <activity android:name=".activities.BookingSummaryActivity" android:exported="true" />
 
         <!-- 15. PaymentActivity -->
-        <activity android:name=".activities.PaymentActivity" android:exported="false" />
+        <activity android:name=".activities.PaymentActivity" android:exported="true" />
 
         <!-- 16. BookingSuccessActivity -->
-        <activity android:name=".activities.BookingSuccessActivity" android:exported="false" />
+        <activity android:name=".activities.BookingSuccessActivity" android:exported="true" />
 
 
 
         <!-- 19. WeatherActivity -->
-        <activity android:name=".activities.WeatherActivity" android:exported="false" />
+        <activity android:name=".activities.WeatherActivity" android:exported="true" />
 
         <!-- 20. DisasterAlertsActivity -->
-        <activity android:name=".activities.DisasterAlertsActivity" android:exported="false" />
+        <activity android:name=".activities.DisasterAlertsActivity" android:exported="true" />
 
         <!-- 21. SoilCropRecommendationActivity -->
-        <activity android:name=".activities.SoilCropRecommendationActivity" android:exported="false" />
+        <activity android:name=".activities.SoilCropRecommendationActivity" android:exported="true" />
 
         <!-- 24. OwnerMainActivity (Contains OwnerDashboardFragment) -->
         <activity android:name=".activities.OwnerMainActivity" android:exported="true" />
 
         <!-- 25. AddEquipmentActivity -->
-        <activity android:name=".activities.AddEquipmentActivity" android:exported="false" />
+        <activity android:name=".activities.AddEquipmentActivity" android:exported="true" />
 
         <!-- 26. DocumentVerificationActivity -->
-        <activity android:name=".activities.DocumentVerificationActivity" android:exported="false" />
+        <activity android:name=".activities.DocumentVerificationActivity" android:exported="true" />
 
         <!-- 27. OwnerBookingRequestsActivity -->
         <activity android:name=".activities.OwnerBookingRequestsActivity" android:exported="true" />
@@ -129,7 +129,7 @@
         <activity android:name=".activities.OwnerEarningsWorkersActivity" android:exported="true" />
 
         <!-- OwnerWeeklyTrendsActivity -->
-        <activity android:name=".activities.OwnerWeeklyTrendsActivity" android:exported="false" />
+        <activity android:name=".activities.OwnerWeeklyTrendsActivity" android:exported="true" />
 
         <!-- 29. WorkerMainActivity (Contains WorkerDashboardFragment) -->
         <activity android:name=".activities.WorkerMainActivity" android:exported="true" />
@@ -138,27 +138,27 @@
         <activity android:name=".activities.WorkerTasksAttendanceActivity" android:exported="true" />
 
         <!-- 31. AdminMainActivity -->
-        <activity android:name=".activities.AdminMainActivity" android:exported="false" />
+        <activity android:name=".activities.AdminMainActivity" android:exported="true" />
 
         <!-- 32. CartActivity -->
-        <activity android:name=".activities.CartActivity" android:exported="false" />
+        <activity android:name=".activities.CartActivity" android:exported="true" />
 
         <!-- 33. ProfileActivity -->
-        <activity android:name=".activities.ProfileActivity" android:exported="false" />
+        <activity android:name=".activities.ProfileActivity" android:exported="true" />
 
         <!-- 34. TaskDetailsActivity -->
-        <activity android:name=".activities.TaskDetailsActivity" android:exported="false" />
+        <activity android:name=".activities.TaskDetailsActivity" android:exported="true" />
 
         <!-- 35. OwnerEquipmentActivity -->
-        <activity android:name=".activities.OwnerEquipmentActivity" android:exported="false" />
+        <activity android:name=".activities.OwnerEquipmentActivity" android:exported="true" />
 
         <!-- 36. OwnerNotificationsActivity -->
-        <activity android:name=".activities.OwnerNotificationsActivity" android:exported="false" />
+        <activity android:name=".activities.OwnerNotificationsActivity" android:exported="true" />
 
         <!-- 37. CommunityGroupChatActivity -->
         <activity
             android:name=".activities.CommunityGroupChatActivity"
-            android:exported="false"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
     </application>

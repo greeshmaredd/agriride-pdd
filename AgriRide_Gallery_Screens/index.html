@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriRide 2026 — All 31 Screen Gallery (Ordered)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: #0D1612; color: #F0FDF4; padding: 24px; }
+    header { text-align: center; margin-bottom: 32px; }
+    h1 { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 800; color: #4ADE80; margin-bottom: 8px; }
+    p { color: #86EFAC; font-size: 15px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #15241C;
+      border: 1px solid #1E3A2B;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { transform: translateY(-4px); border-color: #22C55E; }
+    .card-header {
+      padding: 12px 16px;
+      background: #111D17;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #1E3A2B;
+    }
+    .badge {
+      background: #166534;
+      color: #86EFAC;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ECFDF5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-img-wrapper {
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      background: #0B130E;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .card-footer {
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111D17;
+      border-top: 1px solid #1E3A2B;
+    }
+    .download-btn {
+      color: #4ADE80;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      background: rgba(34, 197, 94, 0.15);
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .download-btn:hover { background: rgba(34, 197, 94, 0.3); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🚜 AgriRide 2026 — All 31 Screens Gallery</h1>
+    <p>Ordered 01 to 31 • High Definition Mobile Mockups</p>
+  </header>
+
+  <div class="gallery-grid" id="grid">
+    <!-- Populated by JS -->
+  </div>
+
+  <script>
+    const screens = [
+      "01_Splash_Screen",
+      "02_Onboarding",
+      "03_Language_Selection",
+      "04_Login_Screen",
+      "05_Register_Screen",
+      "06_OTP_Verification",
+      "07_Farmer_Home_Dashboard",
+      "08_Equipment_Categories",
+      "09_Equipment_Search_and_Filter",
+      "10_Equipment_Details",
+      "11_Select_Farm_Activity",
+      "12_Booking_Details_Form",
+      "13_Smart_Scheduling_Weather",
+      "14_Booking_Summary",
+      "15_Payment_Options",
+      "16_Booking_Success",
+      "17_My_Bookings",
+      "18_Live_Vehicle_Tracking",
+      "19_Weather_Dashboard",
+      "20_Weather_and_Disaster_Alerts",
+      "21_Soil_and_Crop_Recommendation",
+      "22_Farmer_Community_Feed",
+      "23_Agricultural_Store",
+      "24_Owner_Dashboard",
+      "25_Add_Equipment_Form",
+      "26_Vehicle_Document_Verification",
+      "27_Owner_Booking_Requests",
+      "28_Owner_Earnings_and_Workers",
+      "29_Worker_Dashboard",
+      "30_Worker_Tasks_and_Attendance",
+      "31_WhatsApp_Chat_Hub"
+    ];
+
+    const grid = document.getElementById('grid');
+    screens.forEach((name, idx) => {
+      const num = String(idx + 1).padStart(2, '0');
+      const cleanTitle = name.replace(/^\d+_/, '').replace(/_/g, ' ');
+      const filename = `${name}.png`;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-header">
+          <span class="badge">Screen ${num}</span>
+          <span class="card-title">${cleanTitle}</span>
+        </div>
+        <div class="card-img-wrapper">
+          <a href="${filename}" target="_blank">
+            <img src="${filename}" alt="Screen ${num}: ${cleanTitle}" loading="lazy" />
+          </a>
+        </div>
+        <div class="card-footer">
+          <span style="font-size:12px; color:#94A3B8;">HD PNG</span>
+          <a class="download-btn" href="${filename}" download="${filename}">Download</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
