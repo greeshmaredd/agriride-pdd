@@ -12,10 +12,26 @@ const chrome = require('selenium-webdriver/chrome');
 const path = require('path');
 const fs = require('fs');
 
+function resolveWebAppUrl() {
+  if (process.env.AGRIRIDE_URL) return process.env.AGRIRIDE_URL;
+  const candidates = [
+    path.resolve(__dirname, '../../web/index.html'),
+    path.resolve(__dirname, '../../AgriRide 2026/web/index.html'),
+    path.resolve(__dirname, '../web/index.html'),
+    path.resolve(process.cwd(), 'web/index.html'),
+    path.resolve(process.cwd(), 'AgriRide 2026/web/index.html')
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return `file://${candidate.replace(/\\/g, '/')}`;
+    }
+  }
+  return `file://${candidates[0].replace(/\\/g, '/')}`;
+}
+
 // --- Configuration & Environment Setup ---
 const CONFIG = {
-  // Resolve local web portal path or use HTTP server URL if running
-  webAppUrl: process.env.AGRIRIDE_URL || `file:///${path.resolve(__dirname, '../../AgriRide 2026/web/index.html').replace(/\\/g, '/')}`,
+  webAppUrl: resolveWebAppUrl(),
   headless: process.env.HEADLESS !== 'false', // default headless for CI/Actions
   implicitTimeout: 8000,
   explicitTimeout: 10000,
