@@ -1,0 +1,25 @@
+{
+  "name": "agriride-appium-tests",
+  "version": "1.0.0",
+  "description": "Appium 2.x UiAutomator2 E2E Automation Testing Suite for AgriRide Android Native App",
+  "main": "tests/appium-login-tests.js",
+  "scripts": {
+    "test": "node tests/appium-login-tests.js",
+    "generate-report": "python generate_appium_excel_report.py AgriRide_Appium_Test_Report.xlsx",
+    "test:all": "node tests/appium-login-tests.js && python generate_appium_excel_report.py AgriRide_Appium_Test_Report.xlsx"
+  },
+  "keywords": [
+    "appium",
+    "android",
+    "uiautomator2",
+    "e2e-testing",
+    "webdriverio",
+    "agriride",
+    "mobile-automation"
+  ],
+  "author": "AgriRide QA Automation Engineering Team",
+  "license": "ISC",
+  "dependencies": {
+    "webdriverio": "^8.36.0"
+  }
+}
