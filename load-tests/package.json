@@ -1,0 +1,21 @@
+{
+  "name": "agriride-load-tests",
+  "version": "1.0.0",
+  "description": "Baseline and Concurrency Load Testing Suite for AgriRide 2026 API & Web Services",
+  "main": "load-test.js",
+  "scripts": {
+    "test": "node load-test.js",
+    "generate-report": "python generate_load_report.py AgriRide_Load_Testing_Report.xlsx",
+    "test:all": "node load-test.js && python generate_load_report.py AgriRide_Load_Testing_Report.xlsx"
+  },
+  "keywords": [
+    "load-testing",
+    "baseline-testing",
+    "performance",
+    "agriride",
+    "rps",
+    "latency"
+  ],
+  "author": "AgriRide Performance Engineering Team",
+  "license": "ISC"
+}
