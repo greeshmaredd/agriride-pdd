@@ -632,7 +632,7 @@ function generateScreenHTML(screenNum) {
               <label style="display: block; font-size: 13px; font-weight: 700; color: #1A251E; margin-bottom: 6px;">
                 📞 Mobile Number / Email
               </label>
-              <input type="text" id="login-identifier" value="1234567893@agriride.in" style="width: 100%; height: 50px; border: 1.5px solid #D0D7D1; border-radius: 14px; padding: 0 16px; font-size: 14.5px; color: #1A251E; font-weight: 500; outline: none; box-sizing: border-box; background: #FFFFFF;">
+              <input type="text" id="login-identifier" onkeydown="if(event.key === 'Enter') handleLoginSubmit()" value="1234567893@agriride.in" style="width: 100%; height: 50px; border: 1.5px solid #D0D7D1; border-radius: 14px; padding: 0 16px; font-size: 14.5px; color: #1A251E; font-weight: 500; outline: none; box-sizing: border-box; background: #FFFFFF;">
             </div>
 
             <!-- Password Field with Forgot? -->
@@ -642,7 +642,7 @@ function generateScreenHTML(screenNum) {
                 <a href="javascript:void(0)" onclick="showToast('Password reset link sent to mobile / email')" style="font-size: 13px; color: #164E24; font-weight: 700; text-decoration: none;">Forgot?</a>
               </div>
               <div style="position: relative; width: 100%;">
-                <input type="password" id="login-password" value="pass1234" placeholder="Enter your password" style="width: 100%; height: 50px; border: 1.5px solid #D0D7D1; border-radius: 14px; padding: 0 46px 0 16px; font-size: 14.5px; color: #1A251E; font-weight: 500; outline: none; box-sizing: border-box; background: #FFFFFF;">
+                <input type="password" id="login-password" onkeydown="if(event.key === 'Enter') handleLoginSubmit()" value="pass1234" placeholder="Enter your password" style="width: 100%; height: 50px; border: 1.5px solid #D0D7D1; border-radius: 14px; padding: 0 46px 0 16px; font-size: 14.5px; color: #1A251E; font-weight: 500; outline: none; box-sizing: border-box; background: #FFFFFF;">
                 <span onclick="togglePasswordVisibility('login-password', this)" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #5A6B5E; cursor: pointer; font-size: 18px;">
                   <i class="ri-eye-line"></i>
                 </span>
