@@ -1,0 +1,154 @@
+name: All 4 Tests Suite & Excel Reports
+
+on:
+  push:
+    branches: [ "main", "master", "ci/**", "test/**" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  all-4-tests-pipeline:
+    name: Run All 4 Tests & Export Excel Reports
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Runtime (v20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Python Environment (3.11)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Excel Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openpyxl
+
+      # -------------------------------------------------------------
+      # TEST 1: SELENIUM WEB E2E FUNCTIONAL TESTS (310 TEST CASES)
+      # -------------------------------------------------------------
+      - name: 🌐 Test 1 - Run Selenium Web E2E Tests (310 Test Cases)
+        working-directory: ./selenium-tests
+        run: |
+          echo "======================================================="
+          echo "TEST 1: SELENIUM WEB LOGIN FUNCTIONAL E2E TESTS"
+          echo "======================================================="
+          npm install
+          node tests/login-tests.js || true
+          python generate_excel_report.py AgriRide_Login_Test_Report.xlsx
+          ls -lh AgriRide_Login_Test_Report.xlsx
+
+      # -------------------------------------------------------------
+      # TEST 2: APPIUM ANDROID NATIVE E2E TESTS (310 TEST CASES)
+      # -------------------------------------------------------------
+      - name: 📱 Test 2 - Run Appium Android E2E Tests (310 Test Cases)
+        working-directory: ./appium-tests
+        run: |
+          echo "======================================================="
+          echo "TEST 2: APPIUM ANDROID NATIVE FUNCTIONAL E2E TESTS"
+          echo "======================================================="
+          npm install || true
+          node appium-tests.js || true
+          python generate_appium_excel_report.py AgriRide_Appium_Test_Report.xlsx
+          ls -lh AgriRide_Appium_Test_Report.xlsx
+
+      # -------------------------------------------------------------
+      # TEST 3: BACKEND SECURITY ASSESSMENT & DEVSECOPS AUDIT
+      # -------------------------------------------------------------
+      - name: 🛡️ Test 3 - Run Backend Security & Cloud Rules Audit
+        run: |
+          echo "======================================================="
+          echo "TEST 3: BACKEND SECURITY ASSESSMENT & DEVSECOPS AUDIT"
+          echo "======================================================="
+          mkdir -p "Vulnerability Test Results"
+          python scripts/audit_rules.py || true
+          python scripts/generate_security_reports.py "Vulnerability Test Results"
+          ls -lh "Vulnerability Test Results"
+
+      # -------------------------------------------------------------
+      # TEST 4: BASELINE CONCURRENCY LOAD TESTING (100 VUs, 60s)
+      # -------------------------------------------------------------
+      - name: ⚡ Test 4 - Run Baseline Concurrency Load Test (100 VUs, 60s)
+        working-directory: ./load-tests
+        env:
+          CONCURRENT_USERS: 100
+          DURATION_SEC: 60
+        run: |
+          echo "======================================================="
+          echo "TEST 4: BASELINE CONCURRENCY LOAD TEST (100 VUs, 60s)"
+          echo "======================================================="
+          node load-test.js
+          python generate_load_report.py load-results.json AgriRide_Load_Testing_Report.xlsx
+          ls -lh AgriRide_Load_Testing_Report.xlsx
+
+      # -------------------------------------------------------------
+      # CONSOLIDATE ALL EXCEL REPORTS INTO UNIFIED BUNDLE DIRECTORY
+      # -------------------------------------------------------------
+      - name: 📦 Consolidate All Test Excel Reports
+        run: |
+          echo "Packaging all 5 generated Excel reports..."
+          mkdir -p all-test-excel-reports
+          cp selenium-tests/AgriRide_Login_Test_Report.xlsx all-test-excel-reports/AgriRide_Web_Login_Selenium_Test_Report.xlsx
+          cp appium-tests/AgriRide_Appium_Test_Report.xlsx all-test-excel-reports/AgriRide_Android_Native_Appium_Test_Report.xlsx
+          cp "Vulnerability Test Results/findings.xlsx" all-test-excel-reports/AgriRide_Security_Findings_Report.xlsx
+          cp "Vulnerability Test Results/endpoint-inventory.xlsx" all-test-excel-reports/AgriRide_API_Endpoint_Inventory.xlsx
+          cp load-tests/AgriRide_Load_Testing_Report.xlsx all-test-excel-reports/AgriRide_Baseline_Load_Testing_Report.xlsx
+          echo "======================================================="
+          echo "ALL EXCEL REPORTS READY FOR DOWNLOAD:"
+          echo "======================================================="
+          ls -lh all-test-excel-reports
+
+      # -------------------------------------------------------------
+      # UPLOAD ALL EXCEL REPORTS AS UNIFIED SUITE ARTIFACT
+      # -------------------------------------------------------------
+      - name: 📥 Upload Complete All-in-One Excel Reports Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: AgriRide-All-Test-Excel-Reports-Suite
+          path: all-test-excel-reports/
+          retention-days: 30
+
+      # -------------------------------------------------------------
+      # UPLOAD INDIVIDUAL TEST EXCEL ARTIFACTS
+      # -------------------------------------------------------------
+      - name: 📥 Upload Selenium Web E2E Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: AgriRide-Selenium-Web-Login-Excel-Report
+          path: selenium-tests/AgriRide_Login_Test_Report.xlsx
+          retention-days: 30
+
+      - name: 📥 Upload Appium Android E2E Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: AgriRide-Appium-Android-Native-Excel-Report
+          path: appium-tests/AgriRide_Appium_Test_Report.xlsx
+          retention-days: 30
+
+      - name: 📥 Upload Security Audit & Inventory Excel Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: AgriRide-Security-Audit-Excel-Reports
+          path: Vulnerability Test Results/*.xlsx
+          retention-days: 30
+
+      - name: 📥 Upload Baseline Load Testing Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: AgriRide-Baseline-Load-Testing-Excel-Report
+          path: load-tests/AgriRide_Load_Testing_Report.xlsx
+          retention-days: 30
+
+      # -------------------------------------------------------------
+      # PUBLISH MASTER QUALITY & PERFORMANCE DASHBOARD
+      # -------------------------------------------------------------
+      - name: 📊 Publish Master Execution Summary to GitHub Actions
+        run: |
+          python scripts/publish_all_tests_summary.py

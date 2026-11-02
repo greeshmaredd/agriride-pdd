@@ -57,3 +57,4 @@ Normal peak operational load testing under 100 concurrent virtual users for 1 co
 
 if __name__ == "__main__":
     publish()
+
