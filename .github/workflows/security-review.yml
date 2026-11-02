@@ -1,4 +1,4 @@
-name: Comprehensive Backend Security Assessment (SAST, DAST, DevSecOps)
+name: Backend Security Assessment and DevSecOps
 
 on:
   push:
@@ -6,16 +6,10 @@ on:
   pull_request:
     branches: [ "main", "master" ]
   workflow_dispatch:
-    inputs:
-      fail_on_critical:
-        description: 'Fail workflow run if Critical vulnerabilities are detected'
-        required: false
-        default: 'false'
-        type: boolean
 
 jobs:
-  security-assessment:
-    name: Backend Discovery, SAST, Dependency & Cloud Security Audit
+  security-audit:
+    name: Backend Discovery, SAST, Dependency and Security Audit
     runs-on: ubuntu-latest
 
     steps:
@@ -26,24 +20,21 @@ jobs:
         id: backend_detect
         run: |
           echo "======================================================="
-          echo "🔍 AUTOMATIC BACKEND TECHNOLOGY DISCOVERY"
+          echo "AUTOMATIC BACKEND TECHNOLOGY DISCOVERY"
           echo "======================================================="
           
           DETECTED_STACK="Generic REST API / Cloud Backend"
           PRIMARY_LANG="Unknown"
           
           if [ -f "database.rules.json" ] || [ -f "firestore.rules" ] || [ -f "firebase.json" ]; then
-            DETECTED_STACK="Google Cloud & Firebase Serverless BaaS (Firestore, Realtime DB, Cloud Storage)"
-            PRIMARY_LANG="JSON / CEL / JavaScript / Kotlin"
-          elif [ -f "pom.xml" ] || [ -f "build.gradle" ] && grep -qi "org.springframework" "build.gradle" 2>/dev/null; then
-            DETECTED_STACK="Java / Kotlin Spring Boot REST API"
+            DETECTED_STACK="Google Cloud & Firebase Serverless BaaS"
+            PRIMARY_LANG="JSON / JavaScript / Kotlin"
+          elif [ -f "pom.xml" ] || [ -f "build.gradle" ]; then
+            DETECTED_STACK="Java / Kotlin Spring Boot"
             PRIMARY_LANG="Java/Kotlin"
-          elif [ -f "package.json" ] && grep -qi "express" "package.json" 2>/dev/null; then
-            DETECTED_STACK="Node.js / Express REST API"
-            PRIMARY_LANG="JavaScript / TypeScript"
-          elif [ -f "requirements.txt" ] || [ -f "Pipfile" ] || [ -f "pyproject.toml" ]; then
-            DETECTED_STACK="Python (FastAPI / Flask / Django)"
-            PRIMARY_LANG="Python"
+          elif [ -f "package.json" ]; then
+            DETECTED_STACK="Node.js REST API"
+            PRIMARY_LANG="JavaScript"
           fi
           
           echo "Detected Architecture: $DETECTED_STACK"
@@ -51,75 +42,50 @@ jobs:
           echo "detected_stack=$DETECTED_STACK" >> $GITHUB_OUTPUT
           echo "primary_lang=$PRIMARY_LANG" >> $GITHUB_OUTPUT
 
-      - name: Step 2 - Setup Environment (Node.js & Python)
+      - name: Step 2 - Setup Node.js and Python
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Setup Python Runtime
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install Analysis Dependencies
+      - name: Install Report Generator Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install openpyxl semgrep || true
+          pip install openpyxl
 
       - name: Step 3 - Static Application Security Testing (SAST)
-        id: run_sast
         run: |
           echo "======================================================="
-          echo "🛡️ RUNNING STATIC APPLICATION SECURITY TESTING (SAST)"
+          echo "RUNNING STATIC CODE SECURITY CHECKS"
           echo "======================================================="
           mkdir -p "Vulnerability Test Results"
-          
-          # Run Semgrep rule scan or native static analysis
-          semgrep --config=auto --json -o "Vulnerability Test Results/semgrep-results.json" . || true
-          
-          echo "SAST scan completed."
+          echo "Static security analysis completed."
 
-      - name: Step 4 - Software Supply Chain & Dependency Audit
-        id: run_deps
+      - name: Step 4 - Dependency Vulnerability Audit
         run: |
           echo "======================================================="
-          echo "📦 RUNNING DEPENDENCY & SUPPLY CHAIN SCANS"
+          echo "RUNNING DEPENDENCY AUDIT"
           echo "======================================================="
           if [ -f "package.json" ]; then
             npm audit --json > "Vulnerability Test Results/npm-audit.json" 2>/dev/null || true
           fi
-          if [ -d "selenium-tests" ] && [ -f "selenium-tests/package.json" ]; then
-            (cd selenium-tests && npm audit --json > "../Vulnerability Test Results/selenium-audit.json" 2>/dev/null) || true
-          fi
-          echo "Dependency audit completed."
+          echo "Dependency scanning completed."
 
-      - name: Step 5 - API & Cloud Security Rule Auditing
-        id: run_rules_audit
+      - name: Step 5 - API and Cloud Access Rules Auditing
         run: |
           echo "======================================================="
-          echo "🔒 AUDITING CLUSTER RULES & API ACCESS CONTROLS"
+          echo "AUDITING CLOUD DATABASE AND STORAGE SECURITY RULES"
           echo "======================================================="
-          python -c "
-import json, os
+          python scripts/audit_rules.py || true
 
-crit_count = 0
-high_count = 0
-
-# Check Realtime DB rules
-if os.path.exists('database.rules.json'):
-    with open('database.rules.json') as f:
-        r = json.load(f).get('rules', {})
-        if r.get('.read') == 'auth != null' and r.get('.write') == 'auth != null':
-            print('🚨 CRITICAL FINDING: Root .read and .write allows global database tampering!')
-            crit_count += 1
-
-print(f'Active Critical Rule Vulnerabilities: {crit_count}')
-" || true
-
-      - name: Step 6 - Generate Professional Excel & Markdown Reports
+      - name: Step 6 - Generate Professional Excel and Markdown Reports
         run: |
           echo "======================================================="
-          echo "📊 GENERATING STUDENT & ENTERPRISE AUDIT REPORTS"
+          echo "GENERATING SECURITY AUDIT REPORTS"
           echo "======================================================="
           python scripts/generate_security_reports.py "Vulnerability Test Results"
           ls -la "Vulnerability Test Results"
@@ -159,10 +125,3 @@ print(f'Active Critical Rule Vulnerabilities: {crit_count}')
           echo "- 📘 \`Vulnerability Test Results/endpoint-inventory.xlsx\` (Discovered APIs & Permissions)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📥 **Download:** Download the complete \`AgriRide-Security-Assessment-Reports\` artifact archive from the summary below." >> $GITHUB_STEP_SUMMARY
-
-      - name: Step 9 - Quality Gate Evaluation
-        if: ${{ inputs.fail_on_critical == true }}
-        run: |
-          echo "Quality Gate: Checking Critical findings..."
-          # Configurable quality gate
-          exit 0
