@@ -14,3 +14,12 @@ local.properties
 
 # Heap dump files
 *.hprof
+
+node_modules/
+firebase-debug.log
+.firebase/
+AgriRide 2026/
+
+
+selenium-tests/node_modules/
+

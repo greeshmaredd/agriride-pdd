@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriRide 2026 - Premium Agrarian Fleet & Services Hub</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="AgriRide 2026 is a premium digital platform connecting farmers, equipment owners, and skilled workers for seamless machinery rental, smart crop advisory, soil profiling, and local market operations.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined for Clean Modern Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  
+  <!-- Local Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Decorative Gradients -->
+  <div class="bg-gradient-glow orb-1"></div>
+  <div class="bg-gradient-glow orb-2"></div>
+
+  <!-- Main Shell App Wrapper -->
+  <div class="app-container">
+    
+    <!-- Top Interactive Utilities Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="material-symbols-outlined logo-icon">agriculture</span>
+        <div class="brand-text">
+          <h1>AgriRide <span>2026</span></h1>
+          <p>Smart Agrarian Ecosystem</p>
+        </div>
+      </div>
+      
+      <div class="header-controls">
+        <!-- Language Switcher Selector -->
+        <div class="control-group">
+          <span class="material-symbols-outlined control-icon">language</span>
+          <select id="language-selector" title="Choose Language">
+            <option value="English">English</option>
+            <option value="Telugu">తెలుగు (Telugu)</option>
+            <option value="Tamil">தமிழ் (Tamil)</option>
+          </select>
+        </div>
+
+        <!-- Dark/Light Theme Toggle Switch -->
+        <button id="theme-toggle" class="control-btn" title="Toggle Theme">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+
+        <!-- Role Simulator Dropdown (Always visible for simple verification of all 4 personas) -->
+        <div class="role-selector-container">
+          <span class="material-symbols-outlined role-icon">supervised_user_circle</span>
+          <select id="role-simulator" title="Switch User Persona">
+            <option value="FARMER">Farmer (Ravi Kumar)</option>
+            <option value="OWNER">Equipment Owner (Greeshma)</option>
+            <option value="WORKER">Tractor Worker (Subba Rao)</option>
+            <option value="ADMIN">System Admin (Admin)</option>
+          </select>
+        </div>
+
+        <!-- User Quick Profile Info -->
+        <div class="user-badge" id="user-profile-badge">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" alt="User Profile" class="avatar" id="header-avatar">
+          <div class="user-info">
+            <span class="user-name" id="header-username">Ravi Kumar</span>
+            <span class="user-role-label" id="header-role-badge">Farmer</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Workspace Area -->
+    <div class="workspace-wrapper">
+      
+      <!-- Navigation Sidebar -->
+      <aside class="sidebar">
+        <!-- Sidebar Navigation List (Generated dynamically based on selected role) -->
+        <nav class="sidebar-nav">
+          <ul id="sidebar-menu-list">
+            <!-- Dynamic Navigation Items Will Inject Here -->
+          </ul>
+        </nav>
+        
+        <!-- Sidebar Bottom Actions -->
+        <div class="sidebar-footer">
+          <button id="btn-logout" class="sidebar-action-btn">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Application Views Display Area -->
+      <main class="content-panel" id="main-view-viewport">
+        <!-- Dynamic views (Farmer Home, Search, Requests, Admin Approval, etc.) will render here -->
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODALS & POPUPS ==================== -->
+
+  <!-- 1. Equipment Details & Booking Modal -->
+  <div class="modal-overlay" id="booking-modal" style="display: none;">
+    <div class="modal-box glass">
+      <header class="modal-header">
+        <h2 id="modal-eq-name">Equipment Details</h2>
+        <button class="close-btn" onclick="closeModal('booking-modal')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </header>
+      <div class="modal-body">
+        <div class="modal-details-grid">
+          <div class="modal-eq-media">
+            <img id="modal-eq-image" src="" alt="Equipment Image">
+            <div class="eq-spec-tags">
+              <span id="modal-eq-hp"><span class="material-symbols-outlined">bolt</span> 50 HP</span>
+              <span id="modal-eq-rating"><span class="material-symbols-outlined text-yellow">star</span> 4.9 (18 reviews)</span>
+            </div>
+          </div>
+          <div class="modal-eq-info">
+            <p class="eq-description" id="modal-eq-desc"></p>
+            <div class="owner-card">
+              <span class="material-symbols-outlined">account_circle</span>
+              <div>
+                <h4 id="modal-eq-owner">Ramesh Reddy</h4>
+                <p id="modal-eq-location">Mevalurkuppam, Tamil Nadu</p>
+                <p id="modal-eq-phone">Contact: +91 98480 11223</p>
+              </div>
+            </div>
+            <div class="booking-price-badge">
+              <span class="price-val" id="modal-eq-rate">₹1,400</span>
+              <span class="price-unit">/ Acre</span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="modal-divider">
+
+        <!-- Booking Fields Form -->
+        <form id="booking-form" class="modal-booking-form" onsubmit="submitBookingForm(event)">
+          <input type="hidden" id="booking-eq-id">
+          <h3>Confirm Fleet Reservation</h3>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="booking-acres">Farm Size (Acres)</label>
+              <input type="number" id="booking-acres" min="1" max="50" value="2" required oninput="calculateBookingCost()">
+            </div>
+            
+            <div class="form-group">
+              <label for="booking-date">Operation Date</label>
+              <input type="date" id="booking-date" required onchange="checkWeatherSuitability()">
+            </div>
+
+            <div class="form-group">
+              <label for="booking-timeslot">Preferred Time Slot</label>
+              <select id="booking-timeslot" required onchange="checkWeatherSuitability()">
+                <option value="7:00 AM – 10:00 AM">7:00 AM – 10:00 AM (Recommended)</option>
+                <option value="10:00 AM – 1:00 PM">10:00 AM – 1:00 PM</option>
+                <option value="2:00 PM – 5:00 PM">2:00 PM – 5:00 PM</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-activity">Farming Activity</label>
+              <select id="booking-activity" required onchange="checkWeatherSuitability()">
+                <option value="Ploughing">Ploughing (Tillage)</option>
+                <option value="Spraying">Spraying (Pesticide/Urea)</option>
+                <option value="Harvesting">Harvesting (Grain/Paddy)</option>
+                <option value="Sowing">Sowing (Seeds)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Live Weather Advisory Indicator -->
+          <div class="weather-advisory-card" id="booking-weather-card">
+            <span class="material-symbols-outlined advisory-icon">wb_sunny</span>
+            <div class="advisory-text">
+              <h4 id="booking-weather-status">Checking suitability...</h4>
+              <p id="booking-weather-summary">Weather details loading.</p>
+            </div>
+          </div>
+
+          <!-- Cost Calculations Summary Table -->
+          <div class="cost-summary-box">
+            <div class="cost-line">
+              <span>Machinery Rent (Rate × Size)</span>
+              <span id="calc-rent">₹2,800.00</span>
+            </div>
+            <div class="cost-line">
+              <span>Operator Support Fee</span>
+              <span id="calc-fee">₹150.00</span>
+            </div>
+            <div class="cost-line total">
+              <span>Total Estimated Amount</span>
+              <span id="calc-total">₹2,950.00</span>
+            </div>
+          </div>
+
+          <div class="payment-method-box">
+            <label>Payment Method</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="paymentMethod" value="CASH" checked>
+                <span>Pay Cash After Service</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="paymentMethod" value="ONLINE">
+                <span>UPI / Digital Pay</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" onclick="closeModal('booking-modal')">Cancel</button>
+            <button type="submit" class="btn primary">Confirm Reservation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Success Feedback Modal -->
+  <div class="modal-overlay" id="success-modal" style="display: none;">
+    <div class="modal-box success-box glass">
+      <div class="success-icon-wrap">
+        <span class="material-symbols-outlined check-icon">check_circle</span>
+      </div>
+      <h2 id="success-modal-title">Reservation Success!</h2>
+      <p id="success-modal-msg">Your booking has been registered and sent to the machinery owner for confirmation.</p>
+      <div class="success-actions">
+        <button class="btn primary" onclick="closeSuccessAndGoToBookings()">View My Bookings</button>
+        <button class="btn secondary" onclick="closeModal('success-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Add Machinery Modal (Owner Persona) -->
+  <div class="modal-overlay" id="add-machinery-modal" style="display: none;">
+    <div class="modal-box glass">
+      <header class="modal-header">
+        <h2>List New Agriculture Fleet</h2>
+        <button class="close-btn" onclick="closeModal('add-machinery-modal')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </header>
+      <div class="modal-body">
+        <form id="add-machinery-form" class="modal-form" onsubmit="submitAddMachineryForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="add-eq-name">Machinery Name (Model)</label>
+              <input type="text" id="add-eq-name" placeholder="e.g. Sonalika DI 60 Harvester" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="add-eq-category">Category</label>
+              <select id="add-eq-category" required>
+                <option value="Tractor">Tractor</option>
+                <option value="Harvester">Harvester</option>
+                <option value="Sprayer">Sprayer</option>
+                <option value="Rotavator">Rotavator</option>
+                <option value="Drone">Drone</option>
+                <option value="Transplanter">Transplanter</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="add-eq-rate">Rate Per Acre (INR)</label>
+              <input type="number" id="add-eq-rate" placeholder="e.g. 1500" required min="100">
+            </div>
+
+            <div class="form-group">
+              <label for="add-eq-number">Vehicle Registration Number</label>
+              <input type="text" id="add-eq-number" placeholder="e.g. TN 21 AB 9988" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="add-eq-desc">Detailed Specifications / Description</label>
+              <textarea id="add-eq-desc" rows="3" placeholder="Explain the attachments provided (plough, rotavator), horse-power, fuel economy, etc." required></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="add-eq-docs">Upload Registration Certificate (RC) Document (Verification Required)</label>
+              <div class="file-upload-zone">
+                <span class="material-symbols-outlined cloud-icon">cloud_upload</span>
+                <p>Drag & drop or click to upload PDF/JPG copy of vehicle RC.</p>
+                <input type="file" id="add-eq-docs" accept="image/*,application/pdf" required onchange="handleFileSelected(event)">
+                <div id="file-selected-feedback" class="file-feedback"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" onclick="closeModal('add-machinery-modal')">Cancel</button>
+            <button type="submit" class="btn primary">Submit Listing for Verification</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Add Worker Modal (Owner Persona) -->
+  <div class="modal-overlay" id="add-worker-modal" style="display: none;">
+    <div class="modal-box glass">
+      <header class="modal-header">
+        <h2>Register Skilled Farm Operator</h2>
+        <button class="close-btn" onclick="closeModal('add-worker-modal')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </header>
+      <div class="modal-body">
+        <form id="add-worker-form" class="modal-form" onsubmit="submitAddWorkerForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="worker-name-input">Worker Full Name</label>
+              <input type="text" id="worker-name-input" placeholder="e.g. Rambabu Naidu" required>
+            </div>
+            <div class="form-group">
+              <label for="worker-phone-input">Mobile Number</label>
+              <input type="tel" id="worker-phone-input" placeholder="e.g. 98480 34567" required>
+            </div>
+            <div class="form-group">
+              <label for="worker-skill-input">Skill / Primary Role</label>
+              <select id="worker-skill-input" required>
+                <option value="Tractor Operator">Tractor Operator</option>
+                <option value="Harvester Operator">Harvester Operator</option>
+                <option value="Drone Pilot">Drone Pilot</option>
+                <option value="General Field Worker">General Field Worker</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="worker-wage-input">Daily Base Wage (₹)</label>
+              <input type="number" id="worker-wage-input" value="600" required min="300">
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" onclick="closeModal('add-worker-modal')">Cancel</button>
+            <button type="submit" class="btn primary">Register Operator</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local Script -->
+  <script src="app.js"></script>
+</body>
+</html>

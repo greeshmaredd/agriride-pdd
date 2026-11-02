@@ -1,0 +1,24 @@
+{
+  "name": "agriride-selenium-tests",
+  "version": "1.0.0",
+  "description": "Selenium WebDriver E2E Functional Testing Suite for AgriRide Web Login Portal",
+  "main": "tests/login-tests.js",
+  "scripts": {
+    "test": "node tests/login-tests.js",
+    "generate-report": "python generate_excel_report.py AgriRide_Login_Test_Report.xlsx",
+    "test:all": "node tests/login-tests.js && python generate_excel_report.py AgriRide_Login_Test_Report.xlsx"
+  },
+  "keywords": [
+    "selenium",
+    "agriride",
+    "e2e-testing",
+    "webdriver",
+    "excel-report",
+    "login-tests"
+  ],
+  "author": "AgriRide QA Automation Team",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.27.0"
+  }
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriRide 2026 – Smart Farm Machinery Web Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚜</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* RESET & BASE */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #F4FAF5;
+      color: #1A251E;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* DESKTOP WEB APPLICATION TOP NAVBAR */
+    .webapp-header {
+      height: 64px;
+      background: #FFFFFF;
+      border-bottom: 1.5px solid #E5EBE6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .webapp-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .webapp-brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #164E24, #2E7D32);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(22, 78, 36, 0.25);
+    }
+
+    .webapp-brand h1 {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin: 0;
+      color: #1A251E;
+    }
+
+    .webapp-brand h1 span {
+      color: #2E7D32;
+    }
+
+    /* TOP NAV LINKS */
+    .webapp-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .webapp-nav-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #5A6B5E;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .webapp-nav-btn:hover, .webapp-nav-btn.active {
+      background: #EBF5ED;
+      color: #164E24;
+      border-color: #C8E6C9;
+    }
+
+    .role-badge-select {
+      background: #EBF5ED;
+      border: 1.5px solid #C8E6C9;
+      color: #164E24;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      outline: none;
+      margin-left: 8px;
+    }
+
+    /* MAIN WEB APP CANVAS CONTAINER (FULL WIDTH, RESPONSIVE) */
+    .webapp-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: calc(100vh - 64px);
+      background: #F4FAF5;
+      position: relative;
+    }
+
+    .webapp-viewport {
+      width: 100%;
+      min-height: calc(100vh - 64px);
+      background: #F4FAF5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .webapp-screen-canvas {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #F4FAF5;
+    }
+
+    @media (max-width: 900px) {
+      .webapp-nav-links {
+        display: none;
+      }
+      .webapp-header {
+        padding: 0 16px;
+      }
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #164E24;
+      color: #FFFFFF;
+      padding: 10px 22px !important;
+      border-radius: 999px !important;
+      font-size: 13.5px;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+      display: inline-flex !important;
+      align-items: center;
+      gap: 10px;
+      z-index: 999999;
+      width: auto !important;
+      max-width: 90vw !important;
+      height: auto !important;
+      min-height: unset !important;
+      white-space: nowrap;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .toast-notification.hidden {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translateX(-50%) translateY(15px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DESKTOP WEB APPLICATION TOP NAVBAR -->
+  <header class="webapp-header">
+    <div class="webapp-brand" onclick="navigateToScreen(7)">
+      <div class="webapp-brand-icon">
+        <i class="ri-tractor-line"></i>
+      </div>
+      <div>
+        <h1>AgriRide <span>2026</span></h1>
+      </div>
+      <div style="font-size: 11px; background: #E8F5E9; color: #2E7D32; padding: 4px 10px; border-radius: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; margin-left: 12px; border: 1px solid #C8E6C9;">
+        <span style="width: 7px; height: 7px; background: #00C853; border-radius: 50%; box-shadow: 0 0 6px #00C853;"></span>
+        Firebase Connected
+      </div>
+    </div>
+
+    <!-- Web Navigation Links -->
+    <div class="webapp-nav-links">
+      <button class="webapp-nav-btn" onclick="navigateToScreen(7)"><i class="ri-home-5-line"></i> Dashboard</button>
+      <button class="webapp-nav-btn" onclick="navigateToScreen(8)"><i class="ri-grid-fill"></i> Machinery Catalog</button>
+      <button class="webapp-nav-btn" onclick="navigateToScreen(24)"><i class="ri-truck-line"></i> Owner Portal</button>
+      <button class="webapp-nav-btn" onclick="navigateToScreen(29)"><i class="ri-user-settings-line"></i> Driver Hub</button>
+      <button class="webapp-nav-btn" onclick="navigateToScreen(35)"><i class="ri-user-line"></i> Profile</button>
+      
+      <!-- Role Switcher Dropdown -->
+      <select class="role-badge-select" onchange="changeRole(this.value)">
+        <option value="farmer">🌾 Farmer Flow</option>
+        <option value="owner">🚜 Owner Flow</option>
+        <option value="worker">👷 Driver Flow</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- MAIN FULL-SCREEN WEB APPLICATION CANVAS -->
+  <main class="webapp-main">
+    <div class="webapp-viewport" id="webapp-viewport">
+      <!-- Screen content rendered dynamically into this container -->
+      <div class="webapp-screen-canvas" id="phone-screen-body">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-notification" class="toast-notification hidden">
+    <i class="ri-checkbox-circle-fill"></i> <span id="toast-message">Action successful</span>
+  </div>
+
+  <!-- EDIT PROFILE MODAL DIALOG -->
+  <div id="edit-profile-modal" class="profile-modal-backdrop hidden" onclick="if(event.target === this) closeEditProfileModal()">
+    <div class="profile-modal-card">
+      <div class="profile-modal-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 40px; height: 40px; background: #EBF5ED; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+            ✏️
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 18px; font-weight: 800; color: #1A251E; font-family: 'Outfit', sans-serif;">Edit Profile Details</h3>
+            <p style="margin: 2px 0 0 0; font-size: 12px; color: #5A6B5E;">Update your farmer profile & field location</p>
+          </div>
+        </div>
+        <button class="profile-modal-close" onclick="closeEditProfileModal()">✕</button>
+      </div>
+
+      <div class="profile-modal-body">
+        <!-- Full Name -->
+        <div class="profile-form-group">
+          <label>Full Name / రైతు పేరు</label>
+          <div class="profile-input-wrapper">
+            <i class="ri-user-line"></i>
+            <input type="text" id="modal-profile-name" placeholder="Enter your full name" value="abb">
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="profile-form-group">
+          <label>Mobile Number / మొబైల్ నంబర్</label>
+          <div class="profile-input-wrapper">
+            <i class="ri-phone-line"></i>
+            <input type="tel" id="modal-profile-phone" placeholder="Enter mobile number" value="+91 98480 22338">
+          </div>
+        </div>
+
+        <!-- Farm Location -->
+        <div class="profile-form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <label style="margin: 0;">Farm / Village Location / గ్రామం</label>
+            <button type="button" onclick="useCurrentGpsLocationForProfile()" style="background: none; border: none; color: #164E24; font-size: 11.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              📍 Use Current GPS
+            </button>
+          </div>
+          <div class="profile-input-wrapper">
+            <i class="ri-map-pin-line"></i>
+            <input type="text" id="modal-profile-location" placeholder="e.g. Mevalurkuppam, Tamil Nadu" value="Mevalurkuppam, Tamil Nadu">
+          </div>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="profile-form-group">
+          <label>User Role / పాత్ర</label>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+            <div id="role-pill-farmer" onclick="setModalProfileRole('farmer')" class="profile-role-pill active">
+              🌾 Farmer
+            </div>
+            <div id="role-pill-owner" onclick="setModalProfileRole('owner')" class="profile-role-pill">
+              🚜 Owner
+            </div>
+            <div id="role-pill-worker" onclick="setModalProfileRole('worker')" class="profile-role-pill">
+              👷 Driver
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-modal-footer">
+        <button type="button" class="profile-btn-cancel" onclick="closeEditProfileModal()">Cancel</button>
+        <button type="button" class="profile-btn-save" onclick="saveProfileDetails()">Save & Update Profile ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE SDK (App, Auth, Database, Analytics) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics-compat.js"></script>
+
+  <script>
+    // Live Firebase Project Configuration for agriride-farm
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCDkyANqfBtcinD8u_aMwRaxOXJQ4BMOk",
+      authDomain: "agriride-farm.firebaseapp.com",
+      databaseURL: "https://agriride-farm-default-rtdb.firebaseio.com",
+      projectId: "agriride-farm",
+      storageBucket: "agriride-farm.firebasestorage.app",
+      messagingSenderId: "710054075004",
+      appId: "1:710054075004:web:e263431c1b628ac7cac7f9",
+      measurementId: "G-DPJT7MQWEX"
+    };
+
+    // Initialize Firebase
+    let fbApp = null, fbAuth = null, fbDB = null, fbAnalytics = null;
+    try {
+      fbApp = firebase.initializeApp(firebaseConfig);
+      fbAuth = firebase.auth();
+      fbDB = firebase.database();
+      if (typeof firebase.analytics === 'function') {
+        fbAnalytics = firebase.analytics();
+      }
+      console.log('✅ Firebase initialized successfully for agriride-farm');
+    } catch (e) {
+      console.warn('Firebase init:', e);
+    }
+  </script>
+
+  <!-- APP LOGIC -->
+  <script src="app.js"></script>
+
+  <script>
+    // Start directly on Login Screen (Screen 4) for natural end-to-end web app flow!
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      const screenNum = parseInt(hash);
+      if (screenNum && screenNum >= 1 && screenNum <= 35) {
+        if (screenNum === 6) navigateToScreen(7);
+        else navigateToScreen(screenNum);
+      } else {
+        navigateToScreen(4); // Start on Login Screen!
+      }
+    });
+
+    function changeRole(role) {
+      if (typeof state !== 'undefined') {
+        state.role = role;
+        if (role === 'owner') navigateToScreen(24);
+        else if (role === 'worker') navigateToScreen(29);
+        else navigateToScreen(7);
+      }
+    }
+  </script>
+</body>
+</html>
