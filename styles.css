@@ -403,77 +403,55 @@ body {
 }
 
 .android-phone-frame {
-  width: 390px;
-  height: 844px;
+  width: 396px;
+  height: 840px;
   background: var(--bg-app);
   border-radius: 38px;
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
   color: var(--text-primary);
 }
 
-/* TOP NOTCH & CAMERA */
-.phone-top-notch {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 20px;
-  width: 140px;
-  background: #000;
-  border-radius: 12px;
-  z-index: 99;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.phone-top-notch .speaker {
-  width: 40px;
-  height: 4px;
-  background: #222;
-  border-radius: 2px;
-}
-
-.phone-top-notch .punch-hole-camera {
-  width: 10px;
-  height: 10px;
-  background: #111;
-  border: 2px solid #222;
-  border-radius: 50%;
-}
-
-/* ANDROID STATUS BAR */
+/* ANDROID STATUS BAR (Exact match to OnePlus / Android 14/15) */
 .android-status-bar {
-  height: 38px;
-  padding: 10px 20px 0 24px;
+  height: 40px;
+  padding: 10px 18px 4px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--text-primary);
-  z-index: 90;
+  color: #ffffff;
+  background: #0e3e18;
+  z-index: 95;
   user-select: none;
 }
 
-.android-status-bar.dark-theme {
-  color: #ffffff;
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .status-icons {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 13px;
 }
 
-.battery-percent {
-  font-size: 11px;
+.battery-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 800;
 }
 
 /* SCREEN BODY */
@@ -483,32 +461,56 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: var(--bg-app);
+  background: #ffffff;
 }
 
 .phone-screen-body::-webkit-scrollbar {
   display: none;
 }
 
-/* GESTURE BAR */
+/* ANDROID GESTURE BAR */
 .android-gesture-bar {
-  height: 18px;
-  background: transparent;
+  height: 22px;
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 90;
+  z-index: 95;
 }
 
 .gesture-handle {
-  width: 120px;
+  width: 130px;
   height: 4px;
-  background: rgba(0, 0, 0, 0.25);
+  background: #ffffff;
   border-radius: 2px;
 }
 
-.dark-theme ~ .android-gesture-bar .gesture-handle {
-  background: rgba(255, 255, 255, 0.4);
+/* Responsive adjustment for Mobile screens */
+@media (max-width: 480px) {
+  .app-header {
+    display: none;
+  }
+  .screen-sidebar {
+    display: none;
+  }
+  .content-viewport {
+    padding: 0;
+  }
+  .phone-stepper-bar {
+    display: none;
+  }
+  .phone-device-wrapper {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100vw;
+    height: 100vh;
+  }
+  .android-phone-frame {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
 }
 
 /* ==========================================
@@ -814,22 +816,37 @@ body {
   background: #fff;
 }
 
-/* Toast */
+/* Toast Notification Pill */
 .toast-notification {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #1b5e20;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  display: flex;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #164E24;
+  color: #ffffff;
+  padding: 10px 22px !important;
+  border-radius: 999px !important;
+  font-size: 13.5px;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+  display: inline-flex !important;
   align-items: center;
   gap: 8px;
-  z-index: 999;
+  z-index: 999999;
+  width: auto !important;
+  max-width: 90vw !important;
+  height: auto !important;
+  min-height: unset !important;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast-notification.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(15px);
 }
 
 /* ==========================================================================
@@ -1243,5 +1260,190 @@ body {
   font-size: 10px;
   font-weight: 700;
   color: #424242;
+}
+
+/* ==========================================================================
+   EDIT PROFILE MODAL STYLES
+   ========================================================================== */
+.profile-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 35, 20, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.profile-modal-backdrop.hidden {
+  display: none !important;
+}
+
+.profile-modal-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid #E5EBE6;
+}
+
+.profile-modal-header {
+  padding: 20px 24px;
+  background: #F8FAF8;
+  border-bottom: 1.5px solid #E5EBE6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-modal-close {
+  background: #ECEFEF;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #5A6B5E;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.profile-modal-close:hover {
+  background: #FFEBEE;
+  color: #D32F2F;
+}
+
+.profile-modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-form-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1A251E;
+}
+
+.profile-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-input-wrapper i {
+  position: absolute;
+  left: 14px;
+  font-size: 18px;
+  color: #164E24;
+}
+
+.profile-input-wrapper input {
+  width: 100%;
+  height: 48px;
+  border: 1.5px solid #D0D7D1;
+  border-radius: 14px;
+  padding: 0 16px 0 44px;
+  font-size: 15px;
+  color: #1A251E;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.profile-input-wrapper input:focus {
+  border-color: #164E24;
+  box-shadow: 0 0 0 3px rgba(22, 78, 36, 0.12);
+}
+
+.profile-role-pill {
+  height: 46px;
+  border-radius: 12px;
+  background: #F4F7F4;
+  border: 1.5px solid #E5EBE6;
+  color: #1A251E;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.profile-role-pill.active {
+  background: #164E24;
+  border-color: #164E24;
+  color: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(22, 78, 36, 0.2);
+}
+
+.profile-modal-footer {
+  padding: 16px 24px 20px 24px;
+  background: #F8FAF8;
+  border-top: 1.5px solid #E5EBE6;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.profile-btn-cancel {
+  padding: 0 18px;
+  height: 46px;
+  background: #FFFFFF;
+  border: 1.5px solid #D0D7D1;
+  border-radius: 12px;
+  color: #5A6B5E;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-btn-save {
+  padding: 0 24px;
+  height: 46px;
+  background: #164E24;
+  border: none;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(22, 78, 36, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-btn-save:hover {
+  background: #1E6B32;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 

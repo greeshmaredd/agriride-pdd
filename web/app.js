@@ -250,6 +250,17 @@ function getScreenTitle(num) {
 function navigateToScreen(screenNumber) {
   state.currentScreen = screenNumber;
   
+  // Sync URL hash
+  try {
+    if (window.location.hash !== '#' + screenNumber) {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, null, '#' + screenNumber);
+      } else {
+        window.location.hash = screenNumber;
+      }
+    }
+  } catch (e) {}
+  
   // Update sidebar active item
   document.querySelectorAll('.screen-nav-item').forEach((item, index) => {
     if (index + 1 === screenNumber) {
@@ -650,7 +661,7 @@ function generateScreenHTML(screenNum) {
             </div>
 
             <!-- Login Button -->
-            <button onclick="handleLoginSubmit()" style="width: 100%; height: 54px; background-color: #164E24; color: #FFFFFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 14px rgba(22, 78, 36, 0.25);">
+            <button id="login-submit-btn" class="btn-submit" onclick="handleLoginSubmit()" style="width: 100%; height: 54px; background-color: #164E24; color: #FFFFFF; border: none; border-radius: 16px; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 14px rgba(22, 78, 36, 0.25);">
               Login to AgriRide <span style="font-size: 16px;">➔</span>
             </button>
           </div>
@@ -3612,12 +3623,31 @@ function syncBookingToFirebase(bookingData) {
 }
 
 function syncUserToFirebase(identifier, role) {
-  if (typeof fbDB !== 'undefined' && fbDB) {
+  // Save locally in localStorage for persistent offline session
+  try {
+    localStorage.setItem('agriride_user', JSON.stringify({
+      identifier: identifier || 'greeshma',
+      role: role || 'farmer',
+      loginTime: Date.now()
+    }));
+  } catch (e) {}
+
+  // Only sync to live Firebase RTDB if an authenticated user session is active
+  if (typeof fbDB !== 'undefined' && fbDB && typeof fbAuth !== 'undefined' && fbAuth && fbAuth.currentUser) {
     try {
       const safeKey = (identifier || 'greeshma').replace(/[^a-zA-Z0-9]/g, '_');
       const now = Date.now();
       
-      fbDB.ref('users/' + safeKey).update({
+      const safeUpdate = (refPath, data) => {
+        try {
+          const p = fbDB.ref(refPath).update(data);
+          if (p && typeof p.catch === 'function') {
+            p.catch(() => {});
+          }
+        } catch (e) {}
+      };
+
+      safeUpdate('users/' + safeKey, {
         uid: safeKey,
         id: safeKey,
         name: identifier || 'greeshma',
@@ -3630,7 +3660,7 @@ function syncUserToFirebase(identifier, role) {
       });
 
       if (role === 'owner') {
-        fbDB.ref('owners/' + safeKey).update({
+        safeUpdate('owners/' + safeKey, {
           id: safeKey,
           userId: safeKey,
           name: identifier || 'greeshma',
@@ -3640,7 +3670,7 @@ function syncUserToFirebase(identifier, role) {
           totalEquipment: 6
         });
       } else if (role === 'worker') {
-        fbDB.ref('workers/' + safeKey).update({
+        safeUpdate('workers/' + safeKey, {
           id: safeKey,
           userId: safeKey,
           name: identifier || 'Suresh Kumar',
@@ -3649,7 +3679,7 @@ function syncUserToFirebase(identifier, role) {
           availability: 'AVAILABLE'
         });
       } else {
-        fbDB.ref('farmers/' + safeKey).update({
+        safeUpdate('farmers/' + safeKey, {
           id: safeKey,
           userId: safeKey,
           name: identifier || 'greeshma',
